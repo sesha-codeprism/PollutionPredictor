@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<br>
+<font size="125">&nbsp &nbsp &nbsp  AIR POLLUTION OF TELANGANA</font>
+<header>
+<div class="main">
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">AQI</a></li>
+<li><a href="#">Areas</a></li>
+<li><a href="#">Trend</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</div>
+<br>
+<br>
+<br>
+&nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <img src="telangana_green.png" height="320px" />
+  <div class="w3-content w3-container w3-padding-64" id="contact">
+    <h3 class="w3-center w3-padding-large w3-xlarge  w3-animate-opacity">POLLUTION ANALYSIS PREDICTOR</h3>
+    <div class="card w3-row w3-padding-32 w3-section">
+        <form action= "{{ url_for('predict') }}" method='post'>
+          <div class="w3-row-padding" style="margin:8px">
+            <div class="w3-half">
+              <h5>Station COde</h5>
+              <input class="w3-input w3-border" type="text" placeholder="Enter station Code" input name="Station Code" name = "Station Code">
+            </div>
+            <div class="w3-half">
+              <h5>Gender</h5>
+                <input class="w3-input w3-border" type="text" placeholder="Enter year to predict" input name="Selected year" name = "Selected year">
+              <!-- <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Single<br> -->
+            </div>
+          <button class="w3-button w3-black w3-right w3-section" type="submit">
+              <i class="fa fa-calculator"></i> Submit
+            </button>
+            <br><br>
+            <div><p class="w3-right" id="submit"><em> after 'Submit' results will populate below<br> </em></p></div>
+        </form>
+      </div>
+      <div class="w3-col m12 w3-center"style="margin:8px">
+            {% if aqi == None %}
+            <h5> </h5>
+            {% elif (aqi*100|float) <= 50  %}
+            <h5>{{ 'Low pollution levels' }}</h5>
+            {% elif (aqi*100|float) <= 100  %}
+            <h5>{{ 'Low pollution levels' }}</h5>
+            {% elif (aqi*100|float) <= 150  %}
+            <h5>{{ 'Low pollution levels' }}</h5>
+            {% elif (aqi*100|float) <= 200  %}
+            <h5>{{ 'Low Risk of Default' }}</h5>
+            {% elif (aqi*100|float) <= 300  %}
+            <h5>{{ 'Low Risk of Default' }}</h5>
+            {% elif (aqi*100|float) > 300 %}
+            <h5>{{ "High Risk of Default" }}</h5>
+            {% else %}
+            <h5>{{ "Moderate Risk of Default" }}</h5>
+            {% endif %}
+          </div>
+      
+          {% if aqi == None %}
+          <h5> </h5>
+          {% else %}
+          <h5>{{'%0.2f'| format(aqi*100|float)}}% aqi to default</h5>
+          {% endif %}
+        </div>
+
+<br>
+<br>
+
+</header>
+<br>
+<br>ṣ
+
+</body>
+</html>
